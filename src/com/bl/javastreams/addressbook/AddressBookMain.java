@@ -5,36 +5,71 @@ import java.util.Scanner;
 public class AddressBookMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        AddressBook addressBook = new AddressBook();
+
         System.out.println("Welcome to Address Book program");
 
-        System.out.println("Enter First Name:");
-        String firstName = sc.nextLine();
+        boolean exit=false;
 
-        System.out.println("Enter Last Name:");
-        String lastName = sc.nextLine();
+        while (!exit) {
+            System.out.println("1. Add New Contact");
+            System.out.println("2. Display All Contacts");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // Consume newline
 
-        System.out.println("Enter Address:");
-        String address = sc.nextLine();
+            switch (choice) {
+                case 1:
+                    // Taking input for contact details
+                    System.out.println("Enter First Name:");
+                    String firstName = sc.nextLine();
 
-        System.out.println("Enter City:");
-        String city = sc.nextLine();
+                    System.out.println("Enter Last Name:");
+                    String lastName = sc.nextLine();
 
-        System.out.println("Enter State:");
-        String state = sc.nextLine();
+                    System.out.println("Enter Address:");
+                    String address = sc.nextLine();
 
-        System.out.println("Enter Zip Code:");
-        String zip = sc.nextLine();
+                    System.out.println("Enter City:");
+                    String city = sc.nextLine();
 
-        System.out.println("Enter Phone Number:");
-        String phoneNumber = sc.nextLine();
+                    System.out.println("Enter State:");
+                    String state = sc.nextLine();
 
-        System.out.println("Enter Email:");
-        String email = sc.nextLine();
+                    System.out.println("Enter Zip Code:");
+                    String zip = sc.nextLine();
 
-        // Creating contact object
-        Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                    System.out.println("Enter Phone Number:");
+                    String phoneNumber = sc.nextLine();
 
-        // Displaying the contact details
-        System.out.println("Contact Added: " + contact);
+                    System.out.println("Enter Email:");
+                    String email = sc.nextLine();
+
+                    // Create a new Contact object
+                    Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+
+                    // Add the contact to Address Book
+                    addressBook.addContact(contact);
+                    break;
+
+                case 2:
+                    // Display all contacts
+                    addressBook.displayContacts();
+                    break;
+
+                case 3:
+                    // Exit the program
+                    exit = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid option! Please try again.");
+            }
+        }
+
+        sc.close();
+
+
     }
 }
